@@ -21,7 +21,7 @@ public class Jugador : MonoBehaviour
         if (Input.GetMouseButton(0) && auxCooldown <= 0)
         {
             auxCooldown = cooldown;
-            Vector3 mousePosition = Input.mousePosition;
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
             GameObject b = Instantiate(bullet, transform.position, Quaternion.identity);
             Vector3 dir = (mousePosition - transform.position).normalized;
