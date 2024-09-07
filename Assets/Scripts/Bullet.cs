@@ -3,14 +3,16 @@ using UnityEngine;
 [RequireComponent (typeof(SpriteRenderer), typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private int dmg = 1;
     void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        //Destroy(collision.gameObject);
+        collision.GetComponent<Enemigo>().Damage(dmg);
         GameManager.Instance.AddKill();
         Destroy(gameObject);
     }

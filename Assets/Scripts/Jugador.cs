@@ -33,4 +33,9 @@ public class Jugador : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameManager.Instance.SufferDamage(transform);
+    }
+
 }
