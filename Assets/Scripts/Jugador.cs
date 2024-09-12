@@ -8,16 +8,25 @@ public class Jugador : MonoBehaviour
     [SerializeField] private float velBullet = 10f;
     [SerializeField] private float cooldown = 0.4f;
     private float auxCooldown;
-
+    
+    public Transform Target;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        transform.position = new Vector3(
+                    transform.position.x + Input.GetAxis("Horizontal") * Time.deltaTime * 4f,
+                    transform.position.y + Input.GetAxis("Vertical") * Time.deltaTime * 4f
+                );
+
+
+
         if (Input.GetMouseButton(0) && auxCooldown <= 0)
         {
             auxCooldown = cooldown;
@@ -32,6 +41,8 @@ public class Jugador : MonoBehaviour
             auxCooldown -= Time.deltaTime;
         }
     }
+
+    
 
     void OnTriggerEnter2D(Collider2D collision)
     {
