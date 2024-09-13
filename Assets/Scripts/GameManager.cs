@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     private int kills;
+    [Header("Parámetros")]
     [SerializeField] private int hp = 3;
-    [Header("Canvas")]
-    [SerializeField] private Text Tkills, Thp;
     [SerializeField] private Enemy[] enemigos;
     private float timer;
-    [SerializeField] private float frecuencia = 2f;
+    [SerializeField] private float frecuencia = 1.5f;
+    [Header("Punteros")]
+    [SerializeField] private GameObject warning;
+    [SerializeField] private Text Tkills, Thp;
 
     void Awake()
     {
@@ -39,16 +41,16 @@ public class GameManager : MonoBehaviour
         if(timer >= frecuencia)
         {
             timer -= frecuencia;
-            SpawnearEnemigo();
+            SpawnWarning();
         }
     }
 
-    private void SpawnearEnemigo()
+    private void SpawnWarning()
     {
         Enemy enemy = enemigos[Random.Range(0, enemigos.Length)];
-        Vector3 pos = Vector3.zero;
-        float rot = Random.Range(0, 360);
-        Instantiate(enemy.obj, pos, Quaternion.Euler(Vector3.forward * rot)).GetComponent<Enemigo>().speed = enemy.velocidad;
+        Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
+        pos.z = 0;
+        Instantiate(warning, pos, Quaternion.identity).GetComponent<Warning>().SetEnemy(enemy);
     }
 
     public void AddKill()
