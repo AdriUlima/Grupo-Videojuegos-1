@@ -18,8 +18,9 @@ public class Warning : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        float rot = Random.Range(0, 360);
-        Instantiate(enemy.obj, transform.position, Quaternion.Euler(Vector3.forward * rot)).GetComponent<Enemigo>().SetStartSpeed(enemy.velocidad);
+        Enemigo aux = Instantiate(enemy.obj, transform.position, Quaternion.identity).GetComponent<Enemigo>();
+        aux.SetStartSpeed(enemy.velocidad);
+        aux.nombre = enemy.nombre;
         Destroy(gameObject);
     }
 

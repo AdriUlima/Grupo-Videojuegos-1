@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Laser
+  - Freeze
+  - Move
+  - Arriba
+  - Abajo
+  - Izquierda
+  - Derecha
   layers:
   - Default
   - TransparentFX
@@ -14,7 +21,7 @@ TagManager:
   - Jugador
   - Enemigo
   - Bullet
-  - 
+  - Laser
   - 
   - 
   - 
